@@ -1,4 +1,5 @@
+import javax.jms.MessageListener;
 
-public class Director {
+public class Director implements MessageListener{
 
 }
