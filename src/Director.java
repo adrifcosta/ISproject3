@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,7 +44,7 @@ public class Director implements MessageListener{
 				System.out.println("MENU DO DIRETOR");
 				System.out.println("1- Adicionar uma nova série");
 				System.out.println("2- Atualizar série já existente");
-				System.out.println("3- Remover uma série");
+				System.out.println("3- Remover uma série  (Ver todas as séries)");
 				System.out.println("4- Listar todos os atores");
 				System.out.println("5- Convidar todos os atores a participarem numa determinada série");
 				System.out.println("6- Consultar atores que aceitaram participar numa dada série");
@@ -66,7 +67,9 @@ public class Director implements MessageListener{
 				else if(option.equals("3"))
 				{
 					//REMOVER UMA SÉRIE
-					
+					System.out.println("olé");
+					System.out.println(allSeries());
+					System.out.println("olé");
 				}
 				else if(option.equals("4"))
 				{
@@ -107,15 +110,25 @@ public class Director implements MessageListener{
 	
 	// LISTAR TODOS OS ATORES
 	public static List<String> allActors() {
-		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
-		//EntityManager em = emf.createEntityManager();
-		//String jpql = "SELECT c.name FROM Cast c";
-		//TypedQuery<String> typedQuery = em.createQuery(jpql, String.class);
-		//List<String> allActorsNames=typedQuery.getResultList();
-		//return allActorsNames;
-		return null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
+		EntityManager em = emf.createEntityManager();
+		String jpql = "SELECT c.name FROM Cast c";
+		TypedQuery<String> typedQuery = em.createQuery(jpql, String.class);
+		List<String> allActorsNames=typedQuery.getResultList();
+		
+		return allActorsNames;
+		
 	}
-	
+	// LISTAR TODOS AS SERIES
+	public static List<String> allSeries() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
+		EntityManager em = emf.createEntityManager();
+		String jpql = "SELECT s.serieName FROM Serie s";
+		TypedQuery<String> typedQuery = em.createQuery(jpql, String.class);
+		List<String> allSeriesNames=typedQuery.getResultList();
+		return allSeriesNames;
+		
+	}	
 	@Override
 	public void onMessage(Message arg0) {
 		// TODO Auto-generated method stub

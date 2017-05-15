@@ -106,7 +106,7 @@ public class Actor implements MessageListener {
 	}
 
 	public void send(Messages objeto, Destination mandar, String receber) {
-		try (JMSContext context = connectionFactory.createContext("filipa", "Cfilipacosta19!");) {
+		try (JMSContext context = connectionFactory.createContext("adriana", "Adriana1");) {
 			JMSProducer messageProducer = context.createProducer();
 			TextMessage msg = context.createTextMessage();
 			Destination tmp = context.createTemporaryQueue();
